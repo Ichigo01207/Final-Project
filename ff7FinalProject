@@ -1,0 +1,18 @@
+class Fighters:
+    def __init__(self,fighterName,hp,mp,evasiveness,attackPoints):
+        self.fighterName=fighterName
+        self.hp=hp
+        self.mp=mp
+        self.evasiveness=evasiveness
+        self.attackPoints=attackPoints
+    def __str__(self):
+        fighterStats=f"Fighter Name:{self.fighterName}"
+        fighterStats+=" "
+        fighterStats+=f"Hp:{self.hp}"
+        fighterStats+=" "
+        fighterStats+=f"Mp:{self.mp}"
+        fighterStats+=" "
+        fighterStats+=f"Evasiveness:{self.evasiveness}"
+        fighterStats+=" "
+        fighterStats+=f"Attack Points: {self.attackPoints}"
+        return fighterStats
