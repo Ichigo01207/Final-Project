@@ -16,3 +16,4 @@ class Fighters:
         fighterStats+=" "
         fighterStats+=f"Attack Points: {self.attackPoints}"
         return fighterStats
+#LA LA LA
