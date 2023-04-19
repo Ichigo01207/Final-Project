@@ -1,0 +1,27 @@
+#Isa O
+from fighters import *
+from graphics import *
+
+
+class TifaLockhart(Fighters):
+    def __init__(self,win):
+        super(TifaLockhart, self).__init__("Tifa Lockhart", 220,20,5,20)
+
+    def displayImage(self,win):
+        tifaImage = Image(Point(300,300),"images/tifa Lockhart.png")
+        tifaImage.transform(0.75)
+        tifaImage.draw(win)
+        
+
+def main():
+    window = GraphWin("Window", 1500, 800)
+    window.setBackground("White")
+    tifa=TifaLockhart(window)
+    tifa.displayImage(window)
+    tifa.displayFighterStats(window)
+
+    window.getMouse()
+    window.close()
+
+if __name__ == '__main__':
+    main()
