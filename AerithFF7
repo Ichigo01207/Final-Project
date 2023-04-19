@@ -1,0 +1,27 @@
+#Isa O
+from fighters import *
+from graphics import *
+
+
+class AerithGainsborough(Fighters):
+    def __init__(self,win):
+        super(AerithGainsborough, self).__init__("Aerith Gainsborough", 270,50,2,15)
+
+    def displayImage(self,win):
+        aerithImage = Image(Point(300,300),"images/AerithToUse.PNG")
+        aerithImage.transform(1.08)
+        aerithImage.draw(win)
+
+
+
+def main():
+    window = GraphWin("Window", 1500, 800)
+    window.setBackground("White")
+    aerith=AerithGainsborough(window)
+    aerith.displayImage(window)
+    aerith.displayFighterStats(window)
+    window.getMouse()
+    window.close()
+
+if __name__ == '__main__':
+    main()
