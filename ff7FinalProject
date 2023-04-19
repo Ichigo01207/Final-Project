@@ -1,3 +1,4 @@
+from graphics import *
 class Fighters:
     def __init__(self,fighterName,hp,mp,evasiveness,attackPoints):
         self.fighterName=fighterName
@@ -5,15 +6,16 @@ class Fighters:
         self.mp=mp
         self.evasiveness=evasiveness
         self.attackPoints=attackPoints
-    def __str__(self):
-        fighterStats=f"Fighter Name:{self.fighterName}"
-        fighterStats+=" "
-        fighterStats+=f"Hp:{self.hp}"
-        fighterStats+=" "
-        fighterStats+=f"Mp:{self.mp}"
-        fighterStats+=" "
-        fighterStats+=f"Evasiveness:{self.evasiveness}"
-        fighterStats+=" "
-        fighterStats+=f"Attack Points: {self.attackPoints}"
-        return fighterStats
-#LA LA LA
+    def displayFighterStats(self,win:GraphWin):
+        fighterName=Text(Point(100,600),f"Fighter Name:{self.fighterName}")
+        fighterName.draw(win)
+        fighterHP=Text(Point(100,610),f"Hp:{self.hp}")
+        fighterHP.draw(win)
+        fighterMP=Text(Point(100,620),f"Mp:{self.mp}\n")
+        fighterMP.draw(win)
+        fighterEvasivenss=Text(Point(100,630),f"Evasiveness:{self.evasiveness}")
+        fighterEvasivenss.draw(win)
+        fighterAP=Text(Point(100,640),f"Attack Points: {self.attackPoints}")
+        fighterAP.draw(win)
+#tifa=Fighters("Tifa",220,20,5,20)
+#print(tifa)
