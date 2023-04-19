@@ -1,0 +1,29 @@
+#Isa O
+from fighters import *
+from graphics import *
+
+
+class CloudStrife(Fighters):
+    def __init__(self,win):
+        super(CloudStrife, self).__init__("Cloud Strife", 210,25,3,20)
+    
+    def displayImage(self,win):
+        cloudImage = Image(Point(300,300),"images/cloudStrife.png")
+        cloudImage.transform(0.75)
+        cloudImage.draw(win)
+
+
+
+def main():
+    window = GraphWin("Window", 1500, 800)
+    window.setBackground("White")
+    cloud=CloudStrife(window)
+    cloud.displayFighterStats(window)
+
+    cloud.displayImage(window)
+
+    window.getMouse()
+    window.close()
+
+if __name__ == '__main__':
+    main()
