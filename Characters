@@ -1,0 +1,15 @@
+#Isa O
+from Tifaff7 import *
+from cloudff7 import *
+from Aerithff7 import *
+class Characters:
+    def __init__(self):
+        super(Characters, self).__init__()
+    def heroes(self):
+        heroes=[]
+        heroes.append("Cloud Strife")
+        heroes.append("Tifa Lockhart")
+        heroes.append("Aerith Gainsborough")
+    #def villians(self):
+        #Wait for Manshi to come back
+        #villians=[]
