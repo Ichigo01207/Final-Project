@@ -1,0 +1,27 @@
+#Isa O
+from graphics import *
+class Spell:
+    def __init__(self,spellName,damage,turnsToComplete,mpCost,spellTarget):
+        self.spellName=spellName
+        self.damage=damage
+        self.turnsToComplete=turnsToComplete
+        self.mpCost=mpCost
+        self.spellTarget=spellTarget
+    def displaySpellInfo(self,win):
+        spellName=Text(Point(300,600),f"Spell Name:{self.spellName}")
+        spellName.draw(win)
+        spellDamage=Text(Point(300,615),f"Damage:{self.damage}")
+        spellDamage.draw(win)
+        mpCost=Text(Point(300,640),f"MP Cost:{self.mpCost}\n")
+        mpCost.draw(win)
+
+def main():
+    window = GraphWin("Window", 1500, 800)
+    window.setBackground("White")
+    fire=Spell("Fira",15,1,20,"Enemy")
+    fire.displaySpellInfo(window)
+    window.getMouse()
+    window.close()
+
+if __name__ == '__main__':
+    main()
