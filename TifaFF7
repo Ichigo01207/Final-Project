@@ -1,16 +1,20 @@
 #Isa O
 from fighters import *
 from graphics import *
-
+from Spell import *
 
 class TifaLockhart(Fighters):
     def __init__(self,win):
-        super(TifaLockhart, self).__init__("Tifa Lockhart", 220,20,5,20)
+        super(TifaLockhart, self).__init__("Tifa Lockhart", 220,20,5,20,False)
 
     def displayImage(self,win):
         tifaImage = Image(Point(300,300),"images/tifa Lockhart.png")
         tifaImage.transform(0.75)
         tifaImage.draw(win)
+    def tifaSpells(self):
+        unbrideledStrength=Spell("Unbrideled Strength",0,2,10,"Self",25)
+        cure=Spell("Cure",-25,1,5,"Self",0)
+
         
 
 def main():
