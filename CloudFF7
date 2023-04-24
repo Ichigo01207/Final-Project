@@ -5,25 +5,25 @@ from Spell import *
 
 class CloudStrife(Fighters):
     def __init__(self,win):
-        super(CloudStrife, self).__init__("Cloud Strife", 210,25,3,20)
+        super(CloudStrife, self).__init__("Cloud Strife", 210,25,3,20,False)
     
     def displayImage(self,win):
         cloudImage = Image(Point(300,300),"images/cloudStrife.png")
-        cloudImage.transform(0.75)
+        #cloudImage.transform(0.75)
         cloudImage.draw(win)
 class CloudCommandBook:
     def __init__(self):
         super(CloudCommandBook,self).__init__()
     def cloudSpells(self):
-        fire=Spell("Fira",15,1,20,"Enemy")
-        cure=Spell("Cura",-10,1,10,"Self")
+        fire=Spell("Fira",15,1,20,"Enemy",0)
+        cure=Spell("Cura",-40,1,7,"Self",0)
     def displayTurnOptions(win:GraphWin):
         attackOption=Text(Point(300,600),"Attack")
         attackOption.draw(win)
         spellOption=Text(Point(300,630),"Spells")
         spellOption.draw(win)
 
-        #if win.getMouse():
+
 
 def main():
     window = GraphWin("Window", 1500, 800)
@@ -33,7 +33,7 @@ def main():
     cloudSpell=CloudCommandBook
     cloudSpell.displayTurnOptions(window)
     cloud.displayImage(window)
-    fire=Spell("Fira",15,1,20,"Enemy")
+    fire=Spell("Fira",15,1,20,"Enemy",0)
 
     #fire.displaySpellInfo(window)
     window.getMouse()
