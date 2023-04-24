@@ -1,17 +1,20 @@
 #Isa O
 from fighters import *
 from graphics import *
-
+from Spell import *
 
 class AerithGainsborough(Fighters):
     def __init__(self,win):
-        super(AerithGainsborough, self).__init__("Aerith Gainsborough", 270,50,2,15)
+        super(AerithGainsborough, self).__init__("Aerith Gainsborough", 270,50,2,15,False)
 
     def displayImage(self,win):
-        aerithImage = Image(Point(300,300),"images/AerithToUse.PNG")
-        aerithImage.transform(1.08)
+        aerithImage = Image(Point(300,230),"images/AerithFlipped.PNG")
+        aerithImage.transform(0.35)
         aerithImage.draw(win)
-
+    def aerithSpells(self):
+        fire=Spell("Fira",25,1,7,"Enemy",0)
+        curaga=Spell("Curaga",-60,1,10,"Self",0)
+        tempest=Spell("Tempest",50,2,10,"Enemy",0)
 
 
 def main():
