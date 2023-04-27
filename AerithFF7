@@ -5,16 +5,26 @@ from Spell import *
 
 class AerithGainsborough(Fighters):
     def __init__(self,win):
-        super(AerithGainsborough, self).__init__("Aerith Gainsborough", 270,50,2,15,False)
+        super(AerithGainsborough, self).__init__("Aerith Gainsborough", 270,50,2,15,"Hero")
 
     def displayImage(self,win):
         aerithImage = Image(Point(300,230),"images/AerithFlipped.PNG")
         aerithImage.transform(0.35)
         aerithImage.draw(win)
+
+class AerithCommandBook:
+    def __init__(self):
+        super(AerithCommandBook,self).__init__()
     def aerithSpells(self):
         fire=Spell("Fira",25,1,7,"Enemy",0)
         curaga=Spell("Curaga",-60,1,10,"Self",0)
         tempest=Spell("Tempest",50,2,10,"Enemy",0)
+    def displayTurnOptions(self,win:GraphWin):
+        attackOption=Text(Point(300,600),"Attack")
+        attackOption.draw(win)
+        spellOption=Text(Point(300,630),"Spells")
+        spellOption.draw(win)
+
 
 
 def main():
@@ -23,6 +33,9 @@ def main():
     aerith=AerithGainsborough(window)
     aerith.displayImage(window)
     aerith.displayFighterStats(window)
+    aerithspells=AerithCommandBook()
+    aerithspells.displayTurnOptions(window)
+
     window.getMouse()
     window.close()
 
