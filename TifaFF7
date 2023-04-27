@@ -5,15 +5,25 @@ from Spell import *
 
 class TifaLockhart(Fighters):
     def __init__(self,win):
-        super(TifaLockhart, self).__init__("Tifa Lockhart", 220,20,5,20,False)
+        super(TifaLockhart, self).__init__("Tifa Lockhart", 220,20,5,20,"Hero")
 
     def displayImage(self,win):
         tifaImage = Image(Point(300,300),"images/tifa Lockhart.png")
         tifaImage.transform(0.75)
         tifaImage.draw(win)
+
+class TifaCommandBook:
+    def __init__(self):
+        super(TifaCommandBook,self).__init__()
     def tifaSpells(self):
         unbrideledStrength=Spell("Unbrideled Strength",0,2,10,"Self",25)
         cure=Spell("Cure",-25,1,5,"Self",0)
+    def displayTurnOptions(self,win:GraphWin):
+        attackOption=Text(Point(300,600),"Attack")
+        attackOption.draw(win)
+        spellOption=Text(Point(300,630),"Spells")
+        spellOption.draw(win)
+
 
         
 
@@ -23,6 +33,9 @@ def main():
     tifa=TifaLockhart(window)
     tifa.displayImage(window)
     tifa.displayFighterStats(window)
+    tifaspells=TifaCommandBook()
+    tifaspells.displayTurnOptions(window)
+
 
     window.getMouse()
     window.close()
