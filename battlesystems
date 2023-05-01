@@ -1,0 +1,115 @@
+from graphics import*
+from fighters import *
+from cloudff7 import *
+from Aerithff7 import *
+from Tifaff7 import *
+from sephirothff7 import *
+from rudeff7 import *
+from caitSith import *
+#manshi k and isa o
+
+class BattleSystem:
+    def __init__(self,p1,p2): #add back win later!!
+        self.p1 = p1
+        self.p2 = p2
+        self.p1alive = True
+        self.p2alive = True
+   # def displayP1(self, win):
+    #    if self.p1 == Fighters.
+    #def displayP2(self,win):
+    def attack(self,attacker, otherPlayer):
+        '''current contestant attacks and decreases health of
+        otherContest'''
+        otherPlayer.hp -= attacker.attackPoints
+        print(f"{attacker.fighterName} succesfully attacked {otherPlayer.fighterName}\n")
+
+        if otherPlayer.hp <= 0:
+            otherPlayer.alive = False
+            print(f"{attacker.fighterName} is the winner woooo")
+            self.winner()
+
+
+
+
+      #  print(f"{attacker.fighterName} succesfully attacked {otherPlaayer.fighterName}")
+
+    def winner(self):
+        while self.p1alive == True and self.p2alive == True:
+            winPlayer = "None"
+        if self.p1alive == False and self.p2alive == True:
+            winPlayer = f"{self.p2}"
+            return winPlayer
+        elif self.p1alive == True and self.p2alive == False:
+            winPlayer = f"{self.p1}"
+            return winPlayer
+        elif self.p1alive == False and self.p2alive == False:
+            winPlayer = "Tie"
+            return winPlayer
+
+    def turns(self):
+        #turns = 1
+        p1Turn = True
+        p2Turn = False
+        while self.p1alive == True and self.p2alive == True:
+
+            while p1Turn == True:
+                print("Player 1s turn")
+                turnOption = input("What do you plan this turn for?:")
+                if turnOption == "a" or turnOption == "A":
+                    self.attack(self.p1,self.p2)
+                if turnOption == "s" or turnOption == "S":
+                    if self.p1.fighterName == "Cloud Strife":
+                        spellsOptions = CloudCommandBook()
+                        spellInput = input("What spell would you like?: ")
+                        if spellInput=="F" or spellInput=="f":
+                            fire=spellsOptions.spells[0]
+                            self.p2.hp-=fire.damage
+                    elif self.p1.fighterName == "Aerith Gainsborough":
+                        spellsOptions = AerithCommandBook()
+                    elif self.p1.fighterName == "Tifa Lockhart":
+                        spellsOptions = TifaCommandBook()
+                p1Turn = False
+                p2Turn = True
+
+            while p2Turn == True:
+                print("Player 2s turn")
+                turnOption = input("What do you plan this turn for?:")
+                if turnOption == "a" or turnOption == "A":
+                    self.attack(self.p2,self.p1)
+                if turnOption == "s" or turnOption == "S":
+                    if self.p2.fighterName == "Cat Sith":
+                        #spellsOptions = CatCommandBook()
+                        #spellsOptions.catSpells()
+                        spellInput = input("What spell would you like?: ")
+                        #if spellInput == "F" or spellInput == "f":
+
+                        #elif spellInput == "C" or spellInput == "c":
+
+                        #else:
+                            #print("That spell is not belonging to this fighter")
+
+
+                   # elif self.p2.fighterName == "Rude":
+                   #     spellsOptions = RudeCommandBook()
+                   # elif self.p2.fighterName == "Sephiroth":
+                     #   spellsOptions = SephCommandBook()
+                p2Turn = False
+                p1Turn = True
+
+def main():
+   # win = GraphWin("Test", 1500, 800)
+    #win.setBackground("White")
+    isabella = Fighters("Isa", 20, 15, 3, 15,"Hero")
+    man = Fighters("MAN", 40, 4, 3, 20, "Villain")
+    cloud = CloudStrife()
+    cat = CatSith()
+
+    players = BattleSystem(cloud,cat)
+    players.turns()
+
+
+    #players.winner()
+
+
+if __name__ == '__main__':
+    main()
