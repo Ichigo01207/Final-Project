@@ -1,4 +1,5 @@
 from graphics import*
+import random
 from fighters import *
 from cloudff7 import *
 from Aerithff7 import *
@@ -14,6 +15,10 @@ class BattleSystem:
         self.p2 = p2
         self.p1alive = True
         self.p2alive = True
+        self.startingP1Hp = self.p1.hp
+        self.startingP2Hp = self.p2.hp
+        self.startingP1Mp=self.p1.mp
+        self.startingP2Mp=self.p2.mp
    # def displayP1(self, win):
     #    if self.p1 == Fighters.
     #def displayP2(self,win):
@@ -50,43 +55,108 @@ class BattleSystem:
         #turns = 1
         p1Turn = True
         p2Turn = False
+        actionNotPreformed = True
         while self.p1alive == True and self.p2alive == True:
-
+            #startingP1Hp = self.p1.hp
+            #startingP2Hp = self.p2.hp
             while p1Turn == True:
                 print("Player 1s turn")
+                print(f"Hp:{self.p1.hp}/{self.startingP1Hp}")
+                print(f"{self.p1.mp}/{self.startingP1Mp}")
                 turnOption = input("What do you plan this turn for?:")
                 if turnOption == "a" or turnOption == "A":
                     self.attack(self.p1,self.p2)
                 if turnOption == "s" or turnOption == "S":
                     if self.p1.fighterName == "Cloud Strife":
-                        spellsOptions = CloudCommandBook()
-                        spellInput = input("What spell would you like?: ")
-                        if spellInput=="F" or spellInput=="f":
-                            fire=spellsOptions.spells[0]
-                            self.p2.hp-=fire.damage
+                            print("Fira: f Cure: c")
+                            spellInput = input("What spell would you like?: ")
+
+                            if spellInput == "F" or spellInput == "f":
+                                self.p2.hp -= 25
+                                self.p1.mp -=7
+                                print(f"Cloud used fira on {self.p2.fighterName}\n")
+                                actionNotPreformed = False
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p1.hp += 25
+                                self.p1.mp -= 5
+                                print(f"Cloud used cure on self-Hp:{self.p1.hp}\n")
+                                actionNotPreformed = False
+
+                            else:
+                                print("That spell is not belonging to this fighter")
+
                     elif self.p1.fighterName == "Aerith Gainsborough":
-                        spellsOptions = AerithCommandBook()
+                            print("Fira: f Curaga: c Tempest: t")
+                        #spellsOptions = CatCommandBook()
+                        #spellsOptions.catSpells()
+                            spellInput = input("What spell would you like?: ")
+
+                            if spellInput == "F" or spellInput == "f":
+                                self.p2.hp -= 25
+                                self.p1.mp -= 7
+                                print(f"Aerith used fira on {self.p2.fighterName}\n")
+                                actionNotPreformed = False
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p1.hp += 60
+                                self.p2.mp -= 10
+                                print(f"Aerith used curaga on self-Hp:{self.p2.hp}\n")
+                                actionNotPreformed = False
+
+                            else:
+                                print("That spell is not belonging to this fighter")
+
                     elif self.p1.fighterName == "Tifa Lockhart":
-                        spellsOptions = TifaCommandBook()
+                            print("Unbrideled Strength: U Cure: c")
+                        #spellsOptions = CatCommandBook()
+                        #spellsOptions.catSpells()
+                            spellInput = input("What spell would you like?: ")
+
+                            if spellInput == "u" or spellInput == "U":
+                                self.p2.hp -= 50
+                                self.p1.mp -= 20
+                                print(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n")
+                                actionNotPreformed = False
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p2.hp += 25
+                                self.p2.mp -= 5
+                                print(f"Tifa used cure on self-Hp:{self.p1.hp}\n")
+                                actionNotPreformed = False
+                            #cure = spellsOptions.catSpellsList[1]
+                            else:
+                                print("That spell is not belonging to this fighter")
+
                 p1Turn = False
                 p2Turn = True
 
             while p2Turn == True:
                 print("Player 2s turn")
+                print(f"Hp:{self.p2.hp}/{self.startingP2Hp}")
                 turnOption = input("What do you plan this turn for?:")
-                if turnOption == "a" or turnOption == "A":
-                    self.attack(self.p2,self.p1)
-                if turnOption == "s" or turnOption == "S":
-                    if self.p2.fighterName == "Cat Sith":
+                while actionNotPreformed == True:
+                    if turnOption == "a" or turnOption == "A":
+                        self.attack(self.p2,self.p1)
+                        actionNotPreformed = False
+                    if turnOption == "s" or turnOption == "S":
+                        if self.p2.fighterName == "Cat Sith":
+                            print("Firaga: f cure: c")
                         #spellsOptions = CatCommandBook()
                         #spellsOptions.catSpells()
-                        spellInput = input("What spell would you like?: ")
-                        #if spellInput == "F" or spellInput == "f":
+                            spellInput = input("What spell would you like?: ")
 
-                        #elif spellInput == "C" or spellInput == "c":
+                            if spellInput == "F" or spellInput == "f":
+                                self.p1.hp -= 35
+                                self.p2.mp -= 10
+                                print(f"Cat sith used firaga on {self.p1.fighterName}\n")
+                                actionNotPreformed = False
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p2.hp += 25
+                                self.p2.mp -= 5
+                                print(f"Cat sith used cure on self-Hp:{self.p2.hp}\n")
+                                actionNotPreformed = False
+                            #cure = spellsOptions.catSpellsList[1]
+                            else:
+                                print("That spell is not belonging to this fighter")
 
-                        #else:
-                            #print("That spell is not belonging to this fighter")
 
 
                    # elif self.p2.fighterName == "Rude":
@@ -113,3 +183,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
