@@ -7,7 +7,6 @@ from Tifaff7 import *
 from sephirothff7 import *
 from rudeff7 import *
 from caitSith import *
-import random
 #manshi k and isa o
 
 class BattleSystem:
@@ -18,29 +17,29 @@ class BattleSystem:
         self.p2alive = True
         self.startingP1Hp = self.p1.hp
         self.startingP2Hp = self.p2.hp
-        self.startingP1Mp=self.p1.mp
-        self.startingP2Mp=self.p2.mp
-   # def displayP1(self, win):
-    #    if self.p1 == Fighters.
-    #def displayP2(self,win):
+        self.startingP1mp=self.p1.mp
+        self.startingP2mp=self.p2.mp
+
     def attack(self,attacker, otherPlayer):
         '''current contestant attacks and decreases health of
         otherContest'''
-        miss=random.randint(1,10)
-        if miss>=otherPlayer.evasiveness:
-            print(f"{otherPlayer.fighterName} has dodged")
+
+        miss = random.randint(1,10)
+        if miss <= otherPlayer.evasiveness:
+            print(f"{otherPlayer.fighterName} dodged\n")
         else:
             otherPlayer.hp -= attacker.attackPoints
             print(f"{attacker.fighterName} succesfully attacked {otherPlayer.fighterName}\n")
 
-        if otherPlayer.hp <= 0:
-            otherPlayer.alive = False
-            print(f"{attacker.fighterName} is the winner woooo")
-            self.winner()
+            if otherPlayer.hp <= 0:
+                otherPlayer.alive = False
+                print(f"{attacker.fighterName} is the winner woooo")
+                self.winner()
 
 
 
 
+      #  print(f"{attacker.fighterName} succesfully attacked {otherPlaayer.fighterName}")
 
     def winner(self):
         while self.p1alive == True and self.p2alive == True:
@@ -55,28 +54,38 @@ class BattleSystem:
             winPlayer = "Tie"
             return winPlayer
 
-    def turns(self):
-
+    def turns(self,win):
+        #turns = 1
         p1Turn = True
         p2Turn = False
-        actionNotPreformed = True
+        actionNotPreformedP1 = True
+        actionNotPreformedP2 =True
         while self.p1alive == True and self.p2alive == True:
 
             while p1Turn == True:
-                print("Player 1s turn")
-                print(f"Hp:{self.p1.hp}/{self.startingP1Hp}")
-                print(f"{self.p1.mp}/{self.startingP1Mp}")
-                turnOption = input("What do you plan this turn for?:")
-                if turnOption == "a" or turnOption == "A":
-                    actionNotPreformed = False
-                    self.attack(self.p1,self.p2)
-                if turnOption == "s" or turnOption == "S":
-                    if self.p1.fighterName == "Cloud Strife":
+                actionNotPreformedP1 =True
+                turnIndicator=Text(Point(750,50),(f"{self.p1.fighterName}'s turn"))
+                turnIndicator.draw(win)
+                hpTrackerp1=Text(Point(100,618),(f"Hp:{self.p1.hp}/{self.startingP1Hp}"))
+
+
+
+                turnOption = Text(Point(750,400),("What do you plan this turn for?:"))
+                turnOption.draw(win)
+
+                picked=win.getKey()
+                while actionNotPreformedP1 == True:
+                    if picked=="a" or picked == "A":
+                        actionNotPreformedP1 = False
+                        self.attack(self.p1,self.p2)
+                        turnOption.undraw()
+                    if picked == "s" or picked == "S":
+                        if self.p1.fighterName == "Cloud Strife":
                             print("Fira: f Cure: c")
                             spellInput = input("What spell would you like?: ")
                             miss=random.randint(1,10)
                             if spellInput == "F" or spellInput == "f":
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
                                 if miss<=self.p2.evasiveness:
                                     print(f"{self.p2.fighterName} Dodged\n")
                                 else:
@@ -85,7 +94,7 @@ class BattleSystem:
                                     print(f"Cloud used fira on {self.p2.fighterName}\n")
 
                             elif spellInput == "C" or spellInput == "c":
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
                                 self.p1.hp += 25
                                 self.p1.mp -= 5
                                 print(f"Cloud used cure on self-Hp:{self.p1.hp}\n")
@@ -94,13 +103,14 @@ class BattleSystem:
                             else:
                                 print("That spell is not belonging to this fighter")
 
-                    elif self.p1.fighterName == "Aerith Gainsborough":
-                            print("Fira: f Curaga: c Tempest: t")
+                        elif self.p1.fighterName == "Aerith Gainsborough":
+                            spellOptions=Text(Point(300,300),("Fira: f, Curaga: c, Tempest: t"))
+
                             miss=random.randint(1,10)
                             spellInput = input("What spell would you like?: ")
 
                             if spellInput == "F" or spellInput == "f":
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
                                 if miss<=self.p2.evasiveness:
                                     print(f"{self.p2.fighterName} Dodged")
                                 else:
@@ -109,38 +119,42 @@ class BattleSystem:
                                     print(f"Aerith used fira on {self.p2.fighterName}\n")
 
                             elif spellInput == "C" or spellInput == "c":
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
                                 self.p1.hp += 60
                                 self.p2.mp -= 10
                                 print(f"Aerith used curaga on self-Hp:{self.p2.hp}\n")
                             elif spellInput=="t" or spellInput=="T":
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
                                 if miss<=self.p2.evasiveness:
                                     print(f"{self.p2.fighterName} Dodged")
                                 else:
                                     self.p2.hp -= 35
                                     self.p1.mp -= 10
-                                print(f"Aerith used Tempest on {self.p2.fighterName}\n")
+                                    print(f"Aerith used Tempest on {self.p2.fighterName}\n")
 
 
                             else:
                                 print("That spell is not belonging to this fighter")
 
-                    elif self.p1.fighterName == "Tifa Lockhart":
-                            print("Unbrideled Strength: U Cure: c")
-
+                        elif self.p1.fighterName == "Tifa Lockhart":
+                            print("Unbrideled Strength: U, Cure: c")
+                            miss = random.randint(1,10)
                             spellInput = input("What spell would you like?: ")
 
                             if spellInput == "u" or spellInput == "U":
-                                self.p2.hp -= 50
-                                self.p1.mp -= 20
-                                print(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n")
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
+                                if miss <= self.p2.evasiveness:
+                                    print(f"{self.p2.fighterName} dodged")
+                                else:
+                                    self.p2.hp -= 50
+                                    self.p1.mp -= 20
+                                    print(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n")
+
                             elif spellInput == "C" or spellInput == "c":
                                 self.p2.hp += 25
                                 self.p2.mp -= 5
                                 print(f"Tifa used cure on self-Hp:{self.p1.hp}\n")
-                                actionNotPreformed = False
+                                actionNotPreformedP1 = False
 
                             else:
                                 print("That spell is not belonging to this fighter")
@@ -149,64 +163,116 @@ class BattleSystem:
                 p2Turn = True
 
             while p2Turn == True:
-                print("Player 2s turn")
+                actionNotPreformedP2 =True
+                print(f"{self.p2.fighterName}'s turn")
+                hpTrackerp1.undraw()
                 print(f"Hp:{self.p2.hp}/{self.startingP2Hp}")
-                print(f"{self.p2.mp}/{self.startingP2Mp}")
                 turnOption = input("What do you plan this turn for?:")
-                while actionNotPreformed == True:
+                while actionNotPreformedP2 == True:
                     if turnOption == "a" or turnOption == "A":
-                        #actionNotPreformed = False
                         self.attack(self.p2,self.p1)
-
+                        actionNotPreformedP2 = False
                     if turnOption == "s" or turnOption == "S":
-                        miss=random.randint(1,10)
                         if self.p2.fighterName == "Cat Sith":
                             print("Firaga: f cure: c")
 
                             spellInput = input("What spell would you like?: ")
+                            miss = random.randint(1,10)
 
                             if spellInput == "F" or spellInput == "f":
-                                actionNotPreformed = False
-                                if miss<=self.p1.evasiveness:
-                                    print(f"{self.p1.fighterName} Dodged")
+                                actionNotPreformedP2 = False
+                                if miss <= self.p1.evasiveness:
+                                    print(f"{self.p1.fighterName} dodged\n")
+
                                 else:
                                     self.p1.hp -= 35
                                     self.p2.mp -= 10
+
                                     print(f"Cat sith used firaga on {self.p1.fighterName}\n")
 
                             elif spellInput == "C" or spellInput == "c":
-                                actionNotPreformed = False
-                                if miss<=self.p1.evasiveness:
-                                    print(f"{self.p1.fighterName} Dodged")
+                                self.p2.hp += 25
+                                self.p2.mp -= 5
+                                print(f"Cat sith used cure on self-Hp:{self.p2.hp}\n")
+                                actionNotPreformedP2 = False
+                            #cure = spellsOptions.catSpellsList[1]
+                            else:
+                                print("That spell is not belonging to this fighter")
+                        if self.p2.fighterName == "Rude":
+                            print("Firaga: f, Cura: c,Mr. WorldWide: m")
+
+                            spellInput = input("What spell would you like?: ")
+                            miss = random.randint(1,10)
+                            if spellInput == "F" or spellInput == "f":
+                                actionNotPreformedP2 = False
+                                if miss <= self.p1.evasiveness:
+                                    print(f"{self.p1.fighterName} dodged\n")
+
                                 else:
-                                    self.p2.hp += 25
-                                    self.p2.mp -= 5
-                                    print(f"Cat sith used cure on self-Hp:{self.p2.hp}\n")
-                                actionNotPreformed = False
+                                    self.p1.hp -= 35
+                                    self.p2.mp -= 10
+
+                                    print(f"Rude used firaga on {self.p1.fighterName}\n")
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p2.hp += 40
+                                self.p2.mp -= 7
+                                print(f"Rude used cure on self-Hp:{self.p2.hp}\n")
+                                actionNotPreformedP2 = False
+                            elif spellInput == "M" or spellInput == "m":
+                                actionNotPreformedP2 = False
+                                if miss <= self.p1.evasiveness:
+                                    print(f"{self.p1.fighterName} dodged\n")
+                                else:
+                                    self.p1.hp -= 50
+                                    self.p2.mp -= 20
+                                    print(f"Rude used Mr.WorldWide on {self.p1.fighterName}\n")
 
                             else:
                                 print("That spell is not belonging to this fighter")
 
+                        if self.p2.fighterName == "Sephiroth":
+                            print("Cura: c,Evil Slash: e")
+                            spellInput = input("What spell would you like?: ")
+                            miss = random.randint(1,10)
+                            if spellInput == "E" or spellInput == "e":
+                                actionNotPreformedP2 = False
+                                if miss <= self.p1.evasiveness:
+                                    print(f"{self.p1.fighterName} dodged\n")
+                                else:
+                                    self.p1.hp -= 35
+                                    self.p2.mp -= 10
+                                    print(f"Sephiroth used Evil Slash on {self.p1.fighterName}\n")
 
+                            elif spellInput == "C" or spellInput == "c":
+                                self.p2.hp += 40
+                                self.p2.mp -= 7
+                                print(f"Sephiroth used cure on self")
+                                print(f"Hp:{self.p2.hp}\n")
+                                actionNotPreformedP2 = False
+                            else:
+                                print("That spell is not belonging to this fighter")
 
 
                 p2Turn = False
                 p1Turn = True
 
 def main():
-   # win = GraphWin("Test", 1500, 800)
-    #win.setBackground("White")
+    win = GraphWin("Test", 1500, 800)
+    win.setBackground("White")
     isabella = Fighters("Isa", 20, 15, 3, 15,"Hero")
     man = Fighters("MAN", 40, 4, 3, 20, "Villain")
     cloud = CloudStrife()
     cat = CatSith()
+    aerith = AerithGainsborough(win)
+    sephoath = Sephiroth()
 
-    players = BattleSystem(cloud,cat)
-    players.turns()
-
-
+    players = BattleSystem(aerith,sephoath)
+    players.turns(win)
+    win.getMouse()
+    win.close()
 
 
 if __name__ == '__main__':
     main()
+
 
