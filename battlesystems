@@ -108,6 +108,7 @@ class BattleSystem:
                                         if picked=="a" or picked=="A":
                                             self.attack(self.p2,self.p1,win)
                                             actionNotPreformedP2 = False
+                                            spellOptions.undraw()
 
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -205,7 +206,7 @@ class BattleSystem:
 
                             elif picked == "C" or picked == "c":
 
-                                if self.p1.mp<10:                                        
+                                if self.p1.mp<10:
                                         incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
                                         incorrectSpellChoice.draw(win)
                                         time.sleep(3)
@@ -679,9 +680,9 @@ def main():
     win.setBackground("White")
     isabella = Fighters("Isa", 20, 15, 3, 15,"Hero")
     man = Fighters("MAN", 40, 4, 3, 20, "Villain")
-    p1 = AerithGainsborough(win)
+    p1 = CloudStrife(win)
     p1.displayImage(win)
-    p2= Sephiroth(win)
+    p2= CatSith(win)
     p2.displayImage(win)
     aerith = AerithGainsborough(win)
     sephoath = Sephiroth(win)
@@ -697,3 +698,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
