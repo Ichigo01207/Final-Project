@@ -95,21 +95,36 @@ class BattleSystem:
                             miss=random.randint(1,10)
                             chosenSpell=win.getKey()
                             if  chosenSpell== "F" or chosenSpell == "f":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<7:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
+
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
-                                else:
+                                    actionNotPreformedP1 = False
+                                elif self.p1.mp>=7:
                                     self.p2.hp -= 25
                                     self.p1.mp -=7
                                     event=Text(Point(600,400),(f"Cloud used fira on {self.p2.fighterName}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
                             elif spellInput == "C" or spellInput == "c":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<5:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
                                 if self.p1.hp<=170:
                                     self.p1.hp += 25
                                     self.p1.mp -= 5
@@ -117,13 +132,15 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP1 = False
+                                elif self.p1.mp>=5:
                                     self.p1.hp=210
                                     self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Cloud used cure on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
                             else:
                                 incorrectSpellChoice=Text(Point(600,400),("That spell is not belonging to this fighter"))
@@ -144,53 +161,77 @@ class BattleSystem:
 
 
                             if picked == "F" or picked == "f":
+                                if self.p1.mp<7:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
+                                    actionNotPreformedP1 = False
 
-                                else:
+                                elif self.p1.mp>=7:
                                     self.p2.hp -= 25
                                     self.p1.mp -= 7
                                     event=Text(Point(600,400),(f"Aerith used fira on {self.p2.fighterName}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
                             elif picked == "C" or picked == "c":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<10:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
                                 if self.p1.hp<=210:
                                     self.p1.hp += 60
-                                    self.p2.mp -= 10
+                                    self.p1.mp -= 10
                                     event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP1 = False
+                                elif self.p1.mp>=10:
                                     self.p1.hp=270
                                     self.p1.mp -= 10
                                     event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
                             elif picked=="t" or picked=="T":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<10:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
+                                    actionNotPreformedP1 = False
 
 
-                                else:
+                                elif self.p1.mp>=10:
                                     self.p2.hp -= 35
                                     self.p1.mp -= 10
                                     event=Text(Point(600,400),(f"Aerith used Tempest on {self.p2.fighterName}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
 
 
@@ -213,36 +254,52 @@ class BattleSystem:
 
 
                             if picked == "u" or picked == "U":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<20:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
                                 if miss <= self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
-                                else:
+                                    actionNotPreformedP1 = False
+                                elif self.p1.mp>=20:
                                     self.p2.hp -= 50
                                     self.p1.mp -= 20
                                     event=Text(Point(600,400),(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
                             elif picked == "C" or picked == "c":
-                                actionNotPreformedP1 = False
+                                if self.p1.mp<5:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP1=True
+
                                 if self.p1.hp<=195:
-                                    self.p2.hp += 25
-                                    self.p2.mp -= 5
+                                    self.p1.hp += 25
+                                    self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Tifa used cure on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP1 = False
+                                elif self.p1.mp>=5:
                                     self.p1.hp=220
-                                    self.p2.mp -= 5
+                                    self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Tifa used cure on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP1 = False
 
 
 
@@ -285,15 +342,22 @@ class BattleSystem:
                             miss = random.randint(1,10)
 
                             if chosenSpell == "F" or chosenSpell == "f":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<10:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
+                                    actionNotPreformedP2 = False
 
 
-                                else:
+                                elif self.p2.mp>=10:
                                     self.p1.hp -= 35
                                     self.p2.mp -= 10
 
@@ -301,8 +365,15 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
                             elif chosenSpell == "C" or chosenSpell == "c":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<5:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if self.p2.hp<=175:
                                     self.p2.hp += 25
                                     self.p2.mp -= 5
@@ -310,13 +381,15 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP2 = False
+                                elif self.p2.mp>=5:
                                     self.p2.hp=200
                                     self.p2.mp -= 5
                                     event = Text(Point(600,400),f"Cat sith used cure on self-Hp:{self.p2.hp}")
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
 
 
 
@@ -342,14 +415,21 @@ class BattleSystem:
                             chosenSpell = win.getKey()
 
                             if chosenSpell == "F" or chosenSpell == "f":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<10:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
+                                    actionNotPreformedP2 = False
 
-                                else:
+                                elif self.p2.mp>=10:
                                     self.p1.hp -= 35
                                     self.p2.mp -= 10
 
@@ -357,8 +437,15 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
                             elif chosenSpell == "C" or chosenSpell == "c":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<7:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if self.p2.hp<=260:
                                     self.p2.hp += 40
                                     self.p2.mp -= 7
@@ -366,29 +453,39 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP2 = False
+                                elif self.p2.mp>=7:
                                     self.p2.hp=300
                                     self.p2.mp -= 7
                                     event = Text(Point(600,400),f"Rude used cure on self-Hp:{self.p2.hp}")
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
 
 
                             elif chosenSpell == "M" or chosenSpell == "m":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<20:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
-                                else:
+                                    actionNotPreformedP2 = False
+                                elif self.p2.mp>=20:
                                     self.p1.hp -= 50
                                     self.p2.mp -= 20
                                     event = Text(Point(600,400),f"Rude used Mr.WorldWide on {self.p1.fighterName}")
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
 
                             else:
                                 incorrectSpellChoice = Text(Point(600,400),"That spell is not belonging to this fighter")
@@ -406,22 +503,36 @@ class BattleSystem:
                             chosenSpell = win.getKey()
                             miss = random.randint(1,10)
                             if chosenSpell == "E" or chosenSpell == "e":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<10:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged\n")
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
-                                else:
+                                    actionNotPreformedP2 = False
+                                elif self.p2.mp>=10:
                                     self.p1.hp -= 35
                                     self.p2.mp -= 10
                                     event = Text(Point(600,400),f"Sephiroth used Evil Slash on {self.p1.fighterName}")
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
 
                             elif chosenSpell == "C" or chosenSpell == "c":
-                                actionNotPreformedP2 = False
+                                if self.p2.mp<7:
+                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                    incorrectSpellChoice.draw(win)
+                                    time.sleep(3)
+                                    incorrectSpellChoice.undraw()
+                                    actionNotPreformedP2=True
+
                                 if self.p2.hp<=205:
                                     self.p2.hp += 40
                                     self.p2.mp -= 7
@@ -429,13 +540,15 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                else:
+                                    actionNotPreformedP2 = False
+                                elif self.p2.mp>=7:
                                     self.p2.hp=245
                                     self.p2.mp -= 7
                                     event = Text(Point(600,400),f"Sephiroth used cure on self-Hp:{self.p2.hp}")
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
+                                    actionNotPreformedP2 = False
 
                             else:
                                 incorrectSpellChoice = Text(Point(600,400),"That spell is not belonging to this fighter")
