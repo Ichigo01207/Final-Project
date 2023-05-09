@@ -124,17 +124,17 @@ class BattleSystem:
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
                                     actionNotPreformedP1=True
-
-                                if self.p1.hp<=170:
-                                    self.p1.hp += 25
+                                elif self.p1.mp>=5 and self.p1.hp>185:
+                                    self.p1.hp=210
                                     self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Cloud used cure on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
                                     actionNotPreformedP1 = False
-                                elif self.p1.mp>=5:
-                                    self.p1.hp=210
+
+                                if self.p1.mp>=5 and self.p1.hp<=185:
+                                    self.p1.hp += 25
                                     self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Cloud used cure on self-Hp:{self.p1.hp}\n"))
                                     event.draw(win)
@@ -184,6 +184,7 @@ class BattleSystem:
                                     actionNotPreformedP1 = False
 
                             elif picked == "C" or picked == "c":
+
                                 if self.p1.mp<10:
                                     incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
                                     incorrectSpellChoice.draw(win)
@@ -191,7 +192,7 @@ class BattleSystem:
                                     incorrectSpellChoice.undraw()
                                     actionNotPreformedP1=True
 
-                                if self.p1.hp<=210:
+                                elif self.p1.mp>=10 and self.p1.hp<=210:
                                     self.p1.hp += 60
                                     self.p1.mp -= 10
                                     event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p1.hp}\n"))
@@ -199,7 +200,7 @@ class BattleSystem:
                                     time.sleep(3)
                                     event.undraw()
                                     actionNotPreformedP1 = False
-                                elif self.p1.mp>=10:
+                                elif self.p1.mp>=10 and self.p1.hp>210:
                                     self.p1.hp=270
                                     self.p1.mp -= 10
                                     event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p1.hp}\n"))
@@ -240,6 +241,7 @@ class BattleSystem:
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
                                 incorrectSpellChoice.undraw()
+                                actionNotPreformedP1=True
                             spellInput.undraw()
                             spellOption.undraw()
 
@@ -508,7 +510,17 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Cura: c,Evil Slash: e or Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
+
+
+
 
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged\n")
@@ -533,15 +545,7 @@ class BattleSystem:
                                     incorrectSpellChoice.undraw()
                                     actionNotPreformedP2=True
 
-                                if self.p2.hp<=205:
-                                    self.p2.hp += 40
-                                    self.p2.mp -= 7
-                                    event = Text(Point(600,400),f"Sephiroth used cure on self-Hp:{self.p2.hp}")
-                                    event.draw(win)
-                                    time.sleep(3)
-                                    event.undraw()
-                                    actionNotPreformedP2 = False
-                                elif self.p2.mp>=7:
+                                elif self.p2.mp>=7 and self.p2.hp>205:
                                     self.p2.hp=245
                                     self.p2.mp -= 7
                                     event = Text(Point(600,400),f"Sephiroth used cure on self-Hp:{self.p2.hp}")
@@ -550,11 +554,22 @@ class BattleSystem:
                                     event.undraw()
                                     actionNotPreformedP2 = False
 
+                                    if self.p2.mp>=7 and self.p2.hp<=205:
+                                        self.p2.hp += 40
+                                        self.p2.mp -= 7
+                                        event = Text(Point(600,400),f"Sephiroth used cure on self-Hp:{self.p2.hp}")
+                                        event.draw(win)
+                                        time.sleep(3)
+                                        event.undraw()
+                                        actionNotPreformedP2 = False
+
+
                             else:
                                 incorrectSpellChoice = Text(Point(600,400),"That spell is not belonging to this fighter")
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
                                 incorrectSpellChoice.undraw()
+                                actionNotPreformedP2=True
                             spellInput.undraw()
                             spellOptions.undraw()
 
