@@ -47,8 +47,8 @@ class BattleSystem:
                 winnerDisplayed = Text(Point(600,400), f"{attacker.fighterName} is the winner woooo")
                 winnerDisplayed.draw(win)
                 self.winner()
-        
-      
+
+
 
     def winner(self):
         while self.p1alive == True and self.p2alive == True:
@@ -64,13 +64,13 @@ class BattleSystem:
             return winPlayer
 
     def turns(self,win):
-      
+
         p1Turn = True
         p2Turn = False
         actionNotPreformedP1 = True
         actionNotPreformedP2 =True
         while self.p1alive == True and self.p2alive == True:
-           
+
             while p1Turn == True:
                 actionNotPreformedP1 =True
                 turnIndicator = Text(Point(600,200),f"{self.p1.fighterName} turn")
@@ -81,7 +81,7 @@ class BattleSystem:
                 mp.draw(win)
                 picked= win.getKey()
                 event = Text(Point(600,400),"")
-                
+
                 while actionNotPreformedP1 == True:
                     if picked == "a" or picked == "A":
                         actionNotPreformedP1 = False
@@ -121,20 +121,19 @@ class BattleSystem:
                                 incorrectSpellChoice=Text(Point(600,400),("That spell is not belonging to this fighter"))
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
-                                event.undraw()
+                                incorrectSpellChoice.undraw()
                             spellInput.undraw()
                             spellOption.undraw()
-                                                                
 
                         elif self.p1.fighterName == "Aerith Gainsborough":
-                           
+
                             spellOption = spellOption=Text(Point(600,220),("Fira: f, Curaga: c, Tempest: t"))
                             spellOption.draw(win)
                             spellInput = Text(Point(600,240),("What spell would you like?: "))
                             spellInput.draw(win)
                             miss=random.randint(1,10)
                             picked=win.getKey()
-                            spellInput = input("What spell would you like?: ")
+
 
                             if picked == "F" or picked == "f":
                                 if miss<=self.p2.evasiveness:
@@ -142,7 +141,7 @@ class BattleSystem:
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
-                                    
+
                                 else:
                                     self.p2.hp -= 25
                                     self.p1.mp -= 7
@@ -150,16 +149,16 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                    
+
                             elif picked == "C" or picked == "c":
                                 actionNotPreformedP1 = False
                                 self.p1.hp += 60
                                 self.p2.mp -= 10
-                                event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p2.hp}\n"))
+                                event=Text(Point(600,400),(f"Aerith used curaga on self-Hp:{self.p1.hp}\n"))
                                 event.draw(win)
                                 time.sleep(3)
                                 event.undraw()
-                                
+
                             elif picked=="t" or picked=="T":
                                 actionNotPreformedP1 = False
                                 if miss<=self.p2.evasiveness:
@@ -167,7 +166,7 @@ class BattleSystem:
                                     enemyDodged.draw(win)
                                     time.sleep(3)
                                     enemyDodged.undraw()
- 
+
 
                                 else:
                                     self.p2.hp -= 35
@@ -176,43 +175,63 @@ class BattleSystem:
                                     event.draw(win)
                                     time.sleep(3)
                                     event.undraw()
-                                    
 
-                                
+
+
                             else:
                                 incorrectSpellChoice=Text(Point(600,400),("That spell is not belonging to this fighter"))
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
-                                event.undraw()
+                                incorrectSpellChoice.undraw()
                             spellInput.undraw()
                             spellOption.undraw()
-                 
+
 
                         elif self.p1.fighterName == "Tifa Lockhart":
-                            print("Unbrideled Strength: U, Cure: c")
-                            miss = random.randint(1,10)
-                            
+                            spellOption=Text(Point(600,220),("Unbrideled Strength: U, Cure: c"))
+                            spellOption.draw(win)
+                            spellInput = Text(Point(600,240),("What spell would you like?: "))
+                            spellInput.draw(win)
+                            miss=random.randint(1,10)
+                            picked=win.getKey()
 
-                            if spellInput == "u" or spellInput == "U":
+
+                            if picked == "u" or picked == "U":
                                 actionNotPreformedP1 = False
                                 if miss <= self.p2.evasiveness:
-                                    print(f"{self.p2.fighterName} dodged")
+                                    enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
+                                    enemyDodged.draw(win)
+                                    time.sleep(3)
+                                    enemyDodged.undraw()
                                 else:
                                     self.p2.hp -= 50
                                     self.p1.mp -= 20
-                                    print(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n")
+                                    event=Text(Point(600,400),(f"Tifa used Unbridedled Strength on {self.p2.fighterName}\n"))
+                                    event.draw(win)
+                                    time.sleep(3)
+                                    event.undraw()
 
-                            elif spellInput == "C" or spellInput == "c":
+                            elif picked == "C" or picked == "c":
                                 self.p2.hp += 25
                                 self.p2.mp -= 5
-                                print(f"Tifa used cure on self-Hp:{self.p1.hp}\n")
+                                event=Text(Point(600,400),(f"Tifa used cure on self-Hp:{self.p1.hp}\n"))
+                                event.draw(win)
+                                time.sleep(3)
+                                event.undraw()
                                 actionNotPreformedP1 = False
 
                             else:
-                                print("That spell is not belonging to this fighter")
-
+                                incorrectSpellChoice=Text(Point(600,400),("That spell is not belonging to this fighter"))
+                                incorrectSpellChoice.draw(win)
+                                time.sleep(3)
+                                incorrectSpellChoice.undraw()
+                            spellInput.undraw()
+                            spellOption.undraw()
                 p1Turn = False
                 p2Turn = True
+                turnIndicator.undraw()
+                hp.undraw()
+                mp.undraw()
 
             while p2Turn == True:
                 actionNotPreformedP2 =True
@@ -224,7 +243,7 @@ class BattleSystem:
                 mp.draw(win)
                 picked = win.getKey()
                 event = Text(Point(600,400),"")
-               
+
                 while actionNotPreformedP2 == True:
                     if picked == "a" or picked == "A":
                         self.attack(self.p2,self.p1,win)
@@ -233,7 +252,7 @@ class BattleSystem:
                         if self.p2.fighterName == "Cat Sith":
                             spellOptions = Text(Point(600,220),"Firaga: f cure: c")
                             spellOptions.draw(win)
-                        
+
                             spellInput = Text(Point(600,240),"What spell would you like?:")
                             spellInput.draw(win)
                             chosenSpell = win.getKey()
@@ -330,9 +349,11 @@ class BattleSystem:
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
                                 incorrectSpellChoice.undraw()
+                            spellInput.undraw()
+                            spellOptions.undraw()
 
                         if self.p2.fighterName == "Sephiroth":
-                            spellOptions = Text(Point(600,200),"Cura: c,Evil Slash: e")
+                            spellOptions = Text(Point(600,220),"Cura: c,Evil Slash: e")
                             spellOptions.draw(win)
                             spellInput = Text(Point(600,240),"What spell would you like?: ")
                             spellInput.draw(win)
@@ -366,6 +387,8 @@ class BattleSystem:
                                 incorrectSpellChoice.draw(win)
                                 time.sleep(3)
                                 incorrectSpellChoice.undraw()
+                            spellInput.undraw()
+                            spellOptions.undraw()
 
 
                 p2Turn = False
@@ -379,14 +402,16 @@ def main():
     win.setBackground("White")
     isabella = Fighters("Isa", 20, 15, 3, 15,"Hero")
     man = Fighters("MAN", 40, 4, 3, 20, "Villain")
-    cloud = CloudStrife()
-    cat = CatSith()
+    p1 = AerithGainsborough(win)
+    p1.displayImage(win)
+    p2= Sephiroth(win)
+    p2.displayImage(win)
     aerith = AerithGainsborough(win)
-    sephoath = Sephiroth()
+    sephoath = Sephiroth(win)
     rude = Rude()
     tifa = TifaLockhart()
 
-    players = BattleSystem(cloud,cat)
+    players = BattleSystem(p1,p2)
     players.turns(win)
     win.getMouse()
     win.close()
