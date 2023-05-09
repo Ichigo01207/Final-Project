@@ -96,12 +96,18 @@ class BattleSystem:
                             chosenSpell=win.getKey()
                             if  chosenSpell== "F" or chosenSpell == "f":
                                 if self.p1.mp<7:
-                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
-                                    incorrectSpellChoice.draw(win)
-                                    time.sleep(3)
-                                    incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
-
+                                        incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                        incorrectSpellChoice.draw(win)
+                                        time.sleep(3)
+                                        incorrectSpellChoice.undraw()
+                                        spellInput.undraw()
+                                        spellOption.undraw()
+                                        spellOptions = Text(Point(600,220),"Fira: f Cure: c Attack:a ")
+                                        spellOptions.draw(win)
+                                        picked=win.getKey()
+                                        if picked=="a" or picked=="A":
+                                            self.attack(self.p2,self.p1,win)
+                                            actionNotPreformedP2 = False
 
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -119,11 +125,18 @@ class BattleSystem:
                                     actionNotPreformedP1 = False
                             elif spellInput == "C" or spellInput == "c":
                                 if self.p1.mp<5:
-                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
-                                    incorrectSpellChoice.draw(win)
-                                    time.sleep(3)
-                                    incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                        incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                        incorrectSpellChoice.draw(win)
+                                        time.sleep(3)
+                                        incorrectSpellChoice.undraw()
+                                        spellInput.undraw()
+                                        spellOption.undraw()
+                                        spellOptions = Text(Point(600,220),"Fira: f Cure: c Attack:a ")
+                                        spellOptions.draw(win)
+                                        picked=win.getKey()
+                                        if picked=="a" or picked=="A":
+                                            self.attack(self.p2,self.p1,win)
+                                            actionNotPreformedP2 = False
                                 elif self.p1.mp>=5 and self.p1.hp>185:
                                     self.p1.hp=210
                                     self.p1.mp -= 5
@@ -162,11 +175,18 @@ class BattleSystem:
 
                             if picked == "F" or picked == "f":
                                 if self.p1.mp<7:
-                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
-                                    incorrectSpellChoice.draw(win)
-                                    time.sleep(3)
-                                    incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                        incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                        incorrectSpellChoice.draw(win)
+                                        time.sleep(3)
+                                        incorrectSpellChoice.undraw()
+                                        spellInput.undraw()
+                                        spellOption.undraw()
+                                        spellOptions = Text(Point(600,220),"Fira: f, Curaga: c, Tempest: t Attack:a ")
+                                        spellOptions.draw(win)
+                                        picked=win.getKey()
+                                        if picked=="a" or picked=="A":
+                                            self.attack(self.p2,self.p1,win)
+                                            actionNotPreformedP2 = False
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
@@ -185,12 +205,20 @@ class BattleSystem:
 
                             elif picked == "C" or picked == "c":
 
-                                if self.p1.mp<10:
-                                    incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
-                                    incorrectSpellChoice.draw(win)
-                                    time.sleep(3)
-                                    incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                if self.p1.mp<10:                                        
+                                        incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
+                                        incorrectSpellChoice.draw(win)
+                                        time.sleep(3)
+                                        incorrectSpellChoice.undraw()
+                                        spellInput.undraw()
+                                        spellOption.undraw()
+                                        spellOptions = Text(Point(600,220),"Fira: f, Curaga: c, Tempest: t Attack:a ")
+                                        spellOptions.draw(win)
+                                        picked=win.getKey()
+                                        if picked=="a" or picked=="A":
+                                            self.attack(self.p2,self.p1,win)
+                                            actionNotPreformedP2 = False
+
 
                                 elif self.p1.mp>=10 and self.p1.hp<=210:
                                     self.p1.hp += 60
@@ -215,7 +243,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                    spellInput.undraw()
+                                    spellOption.undraw()
+                                    spellOptions = Text(Point(600,220),"Fira: f, Curaga: c, Tempest: t Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -261,7 +296,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                    spellInput.undraw()
+                                    spellOption.undraw()
+                                    spellOptions = Text(Point(600,220),"Unbrideled Strength: U, Cure: c Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 if miss <= self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -284,7 +326,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP1=True
+                                    spellInput.undraw()
+                                    spellOption.undraw()
+                                    spellOptions = Text(Point(600,220),"Unbrideled Strength: U, Cure: c Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 if self.p1.hp<=195:
                                     self.p1.hp += 25
@@ -349,7 +398,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Firaga: f cure: c Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
@@ -374,7 +430,15 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Firaga: f cure: c Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
+
 
                                 if self.p2.hp<=175:
                                     self.p2.hp += 25
@@ -422,7 +486,15 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Firaga: f, Cura: c,Mr. WorldWide: m Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
+
 
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
@@ -446,7 +518,15 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Firaga: f, Cura: c,Mr. WorldWide: m Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
+
 
                                 if self.p2.hp<=260:
                                     self.p2.hp += 40
@@ -472,7 +552,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Firaga: f, Cura: c,Mr. WorldWide: m Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 if miss <= self.p1.evasiveness:
                                     enemyDodged = Text(Point(600,400),f"{self.p1.fighterName} dodged")
@@ -543,7 +630,14 @@ class BattleSystem:
                                     incorrectSpellChoice.draw(win)
                                     time.sleep(3)
                                     incorrectSpellChoice.undraw()
-                                    actionNotPreformedP2=True
+                                    spellInput.undraw()
+                                    spellOptions.undraw()
+                                    spellOptions = Text(Point(600,220),"Cura: c,Evil Slash: e or Attack:a ")
+                                    spellOptions.draw(win)
+                                    picked=win.getKey()
+                                    if picked=="a" or picked=="A":
+                                        self.attack(self.p2,self.p1,win)
+                                        actionNotPreformedP2 = False
 
                                 elif self.p2.mp>=7 and self.p2.hp>205:
                                     self.p2.hp=245
