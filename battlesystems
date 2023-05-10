@@ -20,9 +20,7 @@ class BattleSystem:
         self.startingP2Hp = self.p2.hp
         self.startingP2mp = self.p2.mp
         self.startingP1mp = self.p1.mp
-   # def displayP1(self, win):
-    #    if self.p1 == Fighters.
-    #def displayP2(self,win):
+
     def attack(self,attacker, otherPlayer,win):
         '''current contestant attacks and decreases health of
         otherContest'''
@@ -73,7 +71,7 @@ class BattleSystem:
 
             while p1Turn == True:
                 actionNotPreformedP1 =True
-                turnIndicator = Text(Point(600,200),f"{self.p1.fighterName} turn")
+                turnIndicator = Text(Point(600,200),f"{self.p1.fighterName}'s turn")
                 turnIndicator.draw(win)
                 hp = Text(Point(100,618), f"Hp:{self.p1.hp}/{self.startingP1Hp}")
                 hp.draw(win)
@@ -106,7 +104,7 @@ class BattleSystem:
                                         spellOptions.draw(win)
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
-                                            self.attack(self.p2,self.p1,win)
+                                            self.attack(self.p1,self.p2,win)
                                             actionNotPreformedP2 = False
                                             spellOptions.undraw()
 
@@ -124,7 +122,7 @@ class BattleSystem:
                                     time.sleep(3)
                                     event.undraw()
                                     actionNotPreformedP1 = False
-                            elif spellInput == "C" or spellInput == "c":
+                            elif chosenSpell == "C" or chosenSpell == "c":
                                 if self.p1.mp<5:
                                         incorrectSpellChoice=Text(Point(600,400),("Not enough MP to perform that spell"))
                                         incorrectSpellChoice.draw(win)
@@ -186,7 +184,7 @@ class BattleSystem:
                                         spellOptions.draw(win)
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
-                                            self.attack(self.p2,self.p1,win)
+                                            self.attack(self.p1,self.p2,win)
                                             actionNotPreformedP2 = False
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -217,7 +215,7 @@ class BattleSystem:
                                         spellOptions.draw(win)
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
-                                            self.attack(self.p2,self.p1,win)
+                                            self.attack(self.p1,self.p2,win)
                                             actionNotPreformedP2 = False
 
 
@@ -250,7 +248,7 @@ class BattleSystem:
                                     spellOptions.draw(win)
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
-                                        self.attack(self.p2,self.p1,win)
+                                        self.attack(self.p1,self.p2,win)
                                         actionNotPreformedP2 = False
 
                                 if miss<=self.p2.evasiveness:
@@ -303,7 +301,7 @@ class BattleSystem:
                                     spellOptions.draw(win)
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
-                                        self.attack(self.p2,self.p1,win)
+                                        self.attack(self.p1,self.p2,win)
                                         actionNotPreformedP2 = False
 
                                 if miss <= self.p2.evasiveness:
@@ -333,7 +331,7 @@ class BattleSystem:
                                     spellOptions.draw(win)
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
-                                        self.attack(self.p2,self.p1,win)
+                                        self.attack(self.p1,self.p2,win)
                                         actionNotPreformedP2 = False
 
                                 if self.p1.hp<=195:
@@ -370,7 +368,7 @@ class BattleSystem:
 
             while p2Turn == True:
                 actionNotPreformedP2 =True
-                turnIndicator = Text(Point(600,200),f"{self.p2.fighterName} turn")
+                turnIndicator = Text(Point(600,200),f"{self.p2.fighterName}'s turn")
                 turnIndicator.draw(win)
                 hp = Text(Point(1300,618), f"Hp:{self.p2.hp}/{self.startingP2Hp}")
                 hp.draw(win)
@@ -680,14 +678,14 @@ def main():
     win.setBackground("White")
     isabella = Fighters("Isa", 20, 15, 3, 15,"Hero")
     man = Fighters("MAN", 40, 4, 3, 20, "Villain")
-    p1 = CloudStrife(win)
+    p1 = TifaLockhart(win)
     p1.displayImage(win)
-    p2= CatSith(win)
+    p2= Rude(win)
     p2.displayImage(win)
     aerith = AerithGainsborough(win)
     sephoath = Sephiroth(win)
-    rude = Rude()
-    tifa = TifaLockhart()
+    rude = Rude(win)
+    #tifa = TifaLockhart()
 
     players = BattleSystem(p1,p2)
     players.turns(win)
@@ -698,4 +696,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
