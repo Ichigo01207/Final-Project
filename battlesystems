@@ -303,6 +303,7 @@ class BattleSystem:
                                     if picked=="a" or picked=="A":
                                         self.attack(self.p1,self.p2,win)
                                         actionNotPreformedP2 = False
+                                        spellOptions.undraw()
 
                                 if miss <= self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -334,7 +335,7 @@ class BattleSystem:
                                         self.attack(self.p1,self.p2,win)
                                         actionNotPreformedP2 = False
 
-                                if self.p1.hp<=195:
+                                if self.p1.hp<=195 and self.p1.mp>=5:
                                     self.p1.hp += 25
                                     self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Tifa used cure on self-Hp:{self.p1.hp}\n"))
@@ -342,7 +343,7 @@ class BattleSystem:
                                     time.sleep(3)
                                     event.undraw()
                                     actionNotPreformedP1 = False
-                                elif self.p1.mp>=5:
+                                elif self.p1.hp >195 and self.p1.mp>=5:
                                     self.p1.hp=220
                                     self.p1.mp -= 5
                                     event=Text(Point(600,400),(f"Tifa used cure on self-Hp:{self.p1.hp}\n"))
