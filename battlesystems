@@ -105,7 +105,7 @@ class BattleSystem:
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
                                             self.attack(self.p1,self.p2,win)
-                                            actionNotPreformedP2 = False
+                                            actionNotPreformedP1 = False
                                             spellOptions.undraw()
 
                                 if miss<=self.p2.evasiveness:
@@ -135,7 +135,7 @@ class BattleSystem:
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
                                             self.attack(self.p2,self.p1,win)
-                                            actionNotPreformedP2 = False
+                                            actionNotPreformedP1 = False
                                 elif self.p1.mp>=5 and self.p1.hp>185:
                                     self.p1.hp=210
                                     self.p1.mp -= 5
@@ -185,7 +185,7 @@ class BattleSystem:
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
                                             self.attack(self.p1,self.p2,win)
-                                            actionNotPreformedP2 = False
+                                            actionNotPreformedP1 = False
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
                                     enemyDodged.draw(win)
@@ -216,7 +216,7 @@ class BattleSystem:
                                         picked=win.getKey()
                                         if picked=="a" or picked=="A":
                                             self.attack(self.p1,self.p2,win)
-                                            actionNotPreformedP2 = False
+                                            actionNotPreformedP1 = False
 
 
                                 elif self.p1.mp>=10 and self.p1.hp<=210:
@@ -249,7 +249,7 @@ class BattleSystem:
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
                                         self.attack(self.p1,self.p2,win)
-                                        actionNotPreformedP2 = False
+                                        actionNotPreformedP1 = False
 
                                 if miss<=self.p2.evasiveness:
                                     enemyDodged=Text(Point(600,400),(f"{self.p2.fighterName} Dodged\n"))
@@ -302,7 +302,7 @@ class BattleSystem:
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
                                         self.attack(self.p1,self.p2,win)
-                                        actionNotPreformedP2 = False
+                                        actionNotPreformedP1 = False
                                         spellOptions.undraw()
 
                                 if miss <= self.p2.evasiveness:
@@ -333,7 +333,8 @@ class BattleSystem:
                                     picked=win.getKey()
                                     if picked=="a" or picked=="A":
                                         self.attack(self.p1,self.p2,win)
-                                        actionNotPreformedP2 = False
+                                        actionNotPreformedP1 = False
+                                        spellOptions.undraw()
 
                                 if self.p1.hp<=195 and self.p1.mp>=5:
                                     self.p1.hp += 25
