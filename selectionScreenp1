@@ -1,0 +1,77 @@
+from graphics import *
+from battlesystems import *
+import time
+
+def selectionScreen(win):
+
+        p1Picked = False
+        p2Picked = True
+        #self.p2 = p2
+        #self.p1 = p1
+        while p1Picked == False:
+            tifaImage = Image(Point(300,300),"images/tifapfp.jpg")
+            tifaImage.transform(1.5)
+            tifaImage.draw(win)
+            cloudImage = Image(Point(600,300),"images/cloudpfp.png")
+            cloudImage.transform(1.5)
+            cloudImage.draw(win)
+            aerithImage = Image(Point(900,300),"images/aerithpfp.png")
+            aerithImage.transform(1.5)
+            aerithImage.draw(win)
+            tifa=TifaLockhart(win)
+            tifa.displayFighterStats(win)
+            cloud=CloudStrife(win)
+            cloud.displayFighterStats(win)
+            aerith=AerithGainsborough(win)
+            aerith.displayFighterStats(win)
+
+            picked = win.getKey().upper()
+            if picked == "T":
+                p1 = TifaLockhart(win)
+                chosen = Text(Point(600,100),"You have chosen Tifa")
+                chosen.draw(win)
+                time.sleep(2)
+                chosen.undraw()
+                tifaImage.undraw()
+                cloudImage.undraw()
+                aerithImage.undraw()
+                fighterStatsUndraw(win)
+
+
+                p1Picked = True
+                return p1
+            elif picked == "C":
+                p1 = CloudStrife(win)
+                chosen = Text(Point(600,100),"You have chosen Cloud")
+                chosen.draw(win)
+                time.sleep(2)
+                chosen.undraw()
+                tifaImage.undraw()
+                cloudImage.undraw()
+                aerithImage.undraw()
+                fighterStatsUndraw(win)
+
+
+
+                p1Picked = True
+                return p1
+            elif picked == "A":
+                p1 = AerithGainsborough(win)
+                chosen = Text(Point(600,100),"You have chosen Aeirth")
+                chosen.draw(win)
+                time.sleep(2)
+                chosen.undraw()
+                tifaImage.undraw()
+                cloudImage.undraw()
+                aerithImage.undraw()
+                fighterStatsUndraw(win)
+
+                p1Picked = True
+                return p1
+            else:
+                notAChar = Text(Point(600,100),"This is not a character please pick again")
+                notAChar.draw(win)
+                time.sleep(2)
+                notAChar.undraw()
+                p1Picked = False
+            time.sleep(0.5)
