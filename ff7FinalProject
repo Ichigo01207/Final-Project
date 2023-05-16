@@ -19,3 +19,90 @@ class Fighters:
         fighterAP.draw(win)
 #tifa=Fighters("Tifa",220,20,5,20)
 #print(tifa)
+
+
+
+
+ if self.fighterName=="Tifa Lockhart":
+            x=0
+            fighterNamet=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNamet.draw(win)
+            fighterHPt=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPt.draw(win)
+            fighterMPt=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPt.draw(win)
+            fighterEvasivensst=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivensst.draw(win)
+            fighterAPt=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPt.draw(win)
+
+
+        elif self.fighterName=="Rude":
+            x=0
+            fighterNamer=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNamer.draw(win)
+            fighterHPr=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPr.draw(win)
+            fighterMPr=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPr.draw(win)
+            fighterEvasivenssr=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivenssr.draw(win)
+            fighterAPr=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPr.draw(win)
+
+
+
+        elif self.fighterName=="Cloud Strife":
+            x=300
+            fighterNamec=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNamec.draw(win)
+            fighterHPc=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPc.draw(win)
+            fighterMPc=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPc.draw(win)
+            fighterEvasivenssc=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivenssc.draw(win)
+            fighterAPc=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPc.draw(win)
+
+
+        elif self.fighterName=="Sephiroth":
+            x=300
+            fighterNames=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNames.draw(win)
+            fighterHPs=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPs.draw(win)
+            fighterMPs=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPs.draw(win)
+            fighterEvasivensss=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivensss.draw(win)
+            fighterAPs=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPs.draw(win)
+
+
+        elif self.fighterName=="Aerith Gainsborough":
+            x=600
+            fighterNamea=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNamea.draw(win)
+            fighterHPa=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPa.draw(win)
+            fighterMPa=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPa.draw(win)
+            fighterEvasivenssa=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivenssa.draw(win)
+            fighterAPa=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPa.draw(win)
+
+
+        elif self.fighterName=="Cait Sith":
+            x=600
+            fighterNameca=Text(Point(300+x,450),f"Fighter Name:{self.fighterName}")
+            fighterNameca.draw(win)
+            fighterHPca=Text(Point(300+x,465),f"Hp:{self.hp}")
+            fighterHPca.draw(win)
+            fighterMPca=Text(Point(300+x,490),f"Mp:{self.mp}\n")
+            fighterMPca.draw(win)
+            fighterEvasivenssca=Text(Point(300+x,495),f"Evasiveness:{self.evasiveness}")
+            fighterEvasivenssca.draw(win)
+            fighterAPca=Text(Point(300+x,510),f"Attack Points: {self.attackPoints}")
+            fighterAPca.draw(win)
